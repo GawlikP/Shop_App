@@ -6,7 +6,7 @@
 
 {% block Seccond_Col %}
   Login in: <br>
-  <form action="/" method="POST">
+  <form action="/loging_in/" method="POST">
   {% csrf_token %}
   <div class="alert alert-warinig">User name:{{form.username}} </div>
   <div class="alert alert-waring">Password:{{form.password}} </div>
