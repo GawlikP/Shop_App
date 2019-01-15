@@ -5,15 +5,63 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale =1.0">
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
 <title>Electronic Shop</title>
+
+	<style>
+		.container-full{
+			margin: 0 auto;
+			width: 100%;
+		}
+	</style>
 
 </head>
 
-<body>
+<body style="background-color: grey;">
 
-	<h1>hello world</h1>
+	<div class="container-full">
+	<div class="alert alert-warning text-dark">
+		<center><h1>{{title}}</h1> </center>
+		<hr>
+		<div class="row">
+				<a href="/register" class="btn btn-danger">Register</a>
+				<a href="/" class="btn btn-success">Main Site</a>
+				<a href="/loging_in" class="btn btn-info">Loging in</a>
+		</div>
+	</hr>
+</hr>
+</br>
+		<div class="row">
+			<div class="col-3">
+				<div class="badge badge-danger">
+					<h3>
+				{% block First_Col %}
+
+				{% endblock %}
+			</br>
+				logged as {{login}}
+					</h3>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="badge badge-success">
+					<h3>
+				{% block Seccond_Col %}
+
+				{% endblock %}
+					</h3>
+				</div>
+			</div>
+
+		</div>
 
 
+	</div>
+	</div>
+</hr>
 </body>
 
 </html>

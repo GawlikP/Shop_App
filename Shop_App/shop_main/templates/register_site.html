@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block First_Col %}
+  Registration field: <br>
+  Please fill all fields.
+{% endblock %}
+
+{% block Seccond_Col %}
+
+  <form action="/success_register/" method="POST">
+    {% csrf_token %}
+    <div class="alert alert-info">User name:{{form.usernameInput}} </div>
+    <div class="alert alert-info">Name:{{form.nameInput}} </div>
+    <div class="alert alert-info">Last name:{{form.lastnameInput}} </div>
+    <div class="alert alert-info">Password:{{form.password}} </div>
+    <div class="alert alert-info">Confirm password:{{form.password_again}}</div>
+    </br>
+  <input type="submit" class="btn-success" value="Register">
+  </form>
+{% endblock %}

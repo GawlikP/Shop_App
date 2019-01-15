@@ -1,0 +1,15 @@
+{% extends 'index.html'%}
+
+{% block First_Col %}
+  Login in:
+{% endblock %}
+
+{% block Seccond_Col %}
+  Login in: <br>
+  <form action="/" method="POST">
+  {% csrf_token %}
+  <div class="alert alert-warinig">User name:{{form.username}} </div>
+  <div class="alert alert-waring">Password:{{form.password}} </div>
+  <input type="submit" class="btn-success" value="Login in">
+  </form>
+{% endblock %}
