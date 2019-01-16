@@ -6,10 +6,17 @@
 
 {% block Seccond_Col %}
   Login in: <br>
-  <form action="/loging_in/" method="POST">
+  {% if login == '' %}
+  <form action="/login_success/" method="POST">
   {% csrf_token %}
   <div class="alert alert-warinig">User name:{{form.username}} </div>
   <div class="alert alert-waring">Password:{{form.password}} </div>
   <input type="submit" class="btn-success" value="Login in">
   </form>
+  {% if error %}
+    <div class="alert alert-danger">{{error}}</div>
+  {% endif %}
+  {% elif not login == '' %}
+    Already Logged !
+  {% endif %}
 {% endblock %}

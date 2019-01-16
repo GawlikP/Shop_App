@@ -7,7 +7,7 @@ class User(models.Model):
     name = models.CharField(max_length =100);
     last_name = models.CharField(max_length= 200);
     nick = models.CharField(max_length =100);
-    password = models.CharField(max_length =50);
+    password = models.CharField(max_length = 500);
     register_at = models.DateTimeField(default=datetime.now, blank=True);
 
     def __str__(self):
