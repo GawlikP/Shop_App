@@ -14,7 +14,9 @@
   Name: {{product.name}} </br>
   Price: {{product.price}}zł </br>
   Type: {{product.product_type}} </br>
+
   <img style="height: 30%; width: 30%;" src='/static/images/{{product.image.img_source}}'/>
+  <a href="/product/{{product.id}}/"class="btn btn-success">Details</a></br>
   </div>
 
   {% endfor %}

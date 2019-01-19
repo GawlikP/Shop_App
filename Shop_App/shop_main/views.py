@@ -191,3 +191,16 @@ def login_success(request):
 	return response
 
 	return response;
+def product(request,id):
+	if 'nickname' in request.COOKIES and 'password' in request.COOKIES:
+		login = request.COOKIES['nickname']
+
+	product = Product.objects.get(id=id);
+
+	context = {
+	'login': login,
+	'product': product,
+	'title': 'Electronic Shop'
+	}
+
+	return render(request, 'product.html',context);

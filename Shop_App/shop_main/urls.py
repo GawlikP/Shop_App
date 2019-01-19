@@ -8,4 +8,5 @@ urlpatterns = [
 	url(r'^loging_in/$', views.loging_in, name='loging_in'),
 	url(r'^logout/$', views.logout, name='logout'),
 	url(r'^login_success/$', views.login_success, name='login_success'),
+	url(r'^product/(?P<id>\d+)/$', views.product, name="product")
 ]
