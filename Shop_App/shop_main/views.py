@@ -10,30 +10,30 @@ from .forms import UserLog
 from django.contrib.auth.hashers import make_password, check_password
 
 from .models import User
+from .models import Product_Type
+from .models import Product
 
 # Create your views here.
 def index(request):
 
 	login = ''
 
+	Products = Product.objects.all();
+
 
 	if 'nickname' in request.COOKIES and 'password' in request.COOKIES:
 		login = request.COOKIES['nickname']
 		#print("jep it works")
 
-	if request.method == 'POST':
-		form = UserLog(request.POST)
-		if form.is_valid():
-			test = True;
-	else:
-		form = UserLog()
 
 	context = {
 	'title': 'Electronic Shop',
+	'Products': Products,
 	'login': login
 	}
 
 	return render(request, 'main_site.html', context);
+
 def register(request):
 	login = ''
 	if 'nickname' in request.COOKIES and 'password' in request.COOKIES:

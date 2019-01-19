@@ -1,13 +1,21 @@
 {% extends 'index.html' %}
 
+{% load static %}
+
 {% block First_Col %}
 
-  TEST !!!
 
 {% endblock%}
 
 {% block Seccond_Col %}
 
-TEST !!!!
+  {% for product in Products %}
+  <div class="alert alert-dark text-dark">
+  Name: {{product.name}} </br>
+  Price: {{product.price}}zł </br>
+  Type: {{product.product_type}} </br>
+  <img style="height: 30%; width: 30%;" src='/static/images/{{product.image.img_source}}'/>
+  </div>
 
+  {% endfor %}
 {% endblock %}
