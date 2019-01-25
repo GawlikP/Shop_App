@@ -18,3 +18,6 @@ class UserLog(forms.Form):
     widgets = {
         'password': forms.PasswordInput(),
     }
+
+class Basket_form(forms.Form):
+    mount_of = forms.IntegerField(label='how many?', initial='1');

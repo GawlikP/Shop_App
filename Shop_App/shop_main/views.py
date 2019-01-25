@@ -6,6 +6,7 @@ from django.http import HttpResponse
 
 from .forms import Register_form
 from .forms import UserLog
+from .forms import Basket_form
 
 from django.contrib.auth.hashers import make_password, check_password
 
@@ -99,11 +100,18 @@ def loging_in(request):
 		response.set_cookie('nickname',form.cleaned_data['username']),
 		response.set_cookie('password',form.cleaned_data['password']),
 
+
+
 	if 'nickname' in request.COOKIES and 'password' in request.COOKIES:
 		login = request.COOKIES['nickname']
 		#print("jep it works")
 
 	response['login'] = login;
+
+	if test:
+		login = form.cleaned_data['username']
+		password = form.cleaned_data['password']
+		return login_success(request,login,password);
 
 	return response
 
@@ -153,8 +161,8 @@ def logout(request):
 
 
 	return response;
-def login_success(request):
-	login = ''
+def login_success(request,login,password):
+	#login = ''
 	test = False
 
 	if 'nickname' in request.COOKIES and 'password' in request.COOKIES:
@@ -163,41 +171,42 @@ def login_success(request):
 	if request.method == 'POST':
 		form = UserLog(request.POST)
 		if form.is_valid():
-			#test = True;
-			nickname = form.cleaned_data['username'];
-			if User.objects.filter(nick = nickname):
-				user = User.objects.get(nick = nickname)
-				if check_password(form.cleaned_data['password'], user.password):
-					test = True
-	else:
-		error = 'Unknow combinnation'
+			test = True
 
 	context = {
 	'title': 'Electionic Shop',
 	'login':''
 	}
 
-	response = render(request, 'login_succes.html',context);
-	if test:
-		response.set_cookie('nickname',form.cleaned_data['username']),
-		response.set_cookie('password',form.cleaned_data['password']),
+	if test == False:
+		return loging_in(request)
 
-	if 'nickname' in request.COOKIES and 'password' in request.COOKIES:
-		login = request.COOKIES['nickname']
-		#print("jep it works")
+	response = render(request, 'login_succes.html',context);
+	if login and password:
+		response.set_cookie('nickname',login),
+		response.set_cookie('password',password),
+
 
 	response['login'] = login;
 
 	return response
-
-	return response;
 def product(request,id):
+
+	login = None
+
+	if request.method == 'POST':
+		form =  Basket_form(request.POST)
+	else:
+		form =  Basket_form();
+
+
 	if 'nickname' in request.COOKIES and 'password' in request.COOKIES:
 		login = request.COOKIES['nickname']
 
 	product = Product.objects.get(id=id);
 
 	context = {
+	'form': form,
 	'login': login,
 	'product': product,
 	'title': 'Electronic Shop'
