@@ -20,4 +20,4 @@ class UserLog(forms.Form):
     }
 
 class Basket_form(forms.Form):
-    mount_of = forms.IntegerField(label='how many?', initial='1');
+    mount_of = forms.CharField(label='how', initial='1');

@@ -4,7 +4,9 @@
 {% endblock %}
 
 {% block Seccond_Col %}
-  {{product.id}}</br>
+  <img style="height: 30%; width: 30%;" src='/static/images/{{product.image.img_source}}'/>
+  </br>
+  ID: {{product.id}}</br>
   {{product.name}}</br>
   {{product.price}}</br>
   {{product.description}}</br>

@@ -181,7 +181,6 @@ def login_success(request,login,password):
 	if test == False:
 		return loging_in(request)
 
-	response = render(request, 'login_succes.html',context);
 	if login and password:
 		response.set_cookie('nickname',login),
 		response.set_cookie('password',password),
@@ -194,22 +193,36 @@ def product(request,id):
 
 	login = None
 
+	product = Product.objects.get(id=id);
+
+	if 'basket' in request.COOKIES:
+		basket = request.COOCKIES['basket'];
+
+	response = render(request, 'product.html');
+
 	if request.method == 'POST':
 		form =  Basket_form(request.POST)
+		#basket += [product.id,form.cleaned_data['mount_of']]
+		response.set_cookie('basket',basket)
 	else:
-		form =  Basket_form();
+		form = Basket_form();
 
 
 	if 'nickname' in request.COOKIES and 'password' in request.COOKIES:
 		login = request.COOKIES['nickname']
 
-	product = Product.objects.get(id=id);
+
+	#response['form'] = form;
+	response['login'] = login;
+	response['product'] = product
+	response['title'] = 'Electronic Shop'
 
 	context = {
-	'form': form,
-	'login': login,
-	'product': product,
-	'title': 'Electronic Shop'
+		'product': product,
+		'login': login,
+		'form': form,
+		'title': 'Electronic Shop'
 	}
+	
 
-	return render(request, 'product.html',context);
+	return response;

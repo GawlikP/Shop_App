@@ -43,6 +43,14 @@
 				{% endblock %}
 			</br>
 				logged as {{login}}
+			</br>
+				Basket:
+					{% if basket %}
+						{% for bsk in basket %}
+							<br>
+							basket
+						{% endfor %}
+					{% endif %}
 					</h3>
 				</div>
 			</div>
